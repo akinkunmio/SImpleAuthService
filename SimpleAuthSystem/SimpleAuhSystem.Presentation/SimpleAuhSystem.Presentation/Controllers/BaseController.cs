@@ -24,9 +24,6 @@ namespace SimpleAuhSystem.Presentation.Controllers
                 (int)HttpStatusCode.Unauthorized => StatusCode(StatusCodes.Status401Unauthorized, serviceResponse),
                 (int)HttpStatusCode.NotFound => StatusCode(StatusCodes.Status404NotFound, serviceResponse),
                 (int)HttpStatusCode.Forbidden => StatusCode(StatusCodes.Status403Forbidden, serviceResponse),
-                (int)HttpStatusCode.Conflict => StatusCode(StatusCodes.Status409Conflict, serviceResponse),
-                (int)HttpStatusCode.ServiceUnavailable => StatusCode(StatusCodes.Status503ServiceUnavailable, serviceResponse),
-                (int)HttpStatusCode.UnprocessableEntity => StatusCode(StatusCodes.Status422UnprocessableEntity, serviceResponse),
                 _ => StatusCode(StatusCodes.Status500InternalServerError, serviceResponse)
             };
 

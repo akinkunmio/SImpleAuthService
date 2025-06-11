@@ -8,11 +8,11 @@ namespace SimpleAuhSystem.Presentation.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    public class AuthController : BaseController
+    public class AuthController(IAuthService _auth) : BaseController
     {
-        private readonly IAuthService _auth;
-        public AuthController(IAuthService auth) => _auth = auth;
-
+        [ProducesResponseType(typeof(ServiceResponse<string>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ServiceResponse<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ServiceResponse<string>), StatusCodes.Status409Conflict)]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest req)
         {
@@ -20,6 +20,9 @@ namespace SimpleAuhSystem.Presentation.Controllers
             return ServiceResponse(response);
         }
 
+        [ProducesResponseType(typeof(ServiceResponse<TokenDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ServiceResponse<TokenDto>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ServiceResponse<TokenDto>), StatusCodes.Status404NotFound)]
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest req)
         {

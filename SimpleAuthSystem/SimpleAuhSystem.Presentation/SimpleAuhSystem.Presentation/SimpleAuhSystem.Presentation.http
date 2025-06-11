@@ -1,0 +1,6 @@
+@SimpleAuhSystem.Presentation_HostAddress = http://localhost:5077
+
+GET {{SimpleAuhSystem.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

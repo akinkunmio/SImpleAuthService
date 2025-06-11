@@ -2,7 +2,7 @@
 
 SimpleAuthService is a microservice that implements 3 apis to showcase how a simple authentication service works
 
-Written in C# using .NET 8. It makes usee of the ONION CLEAN architecture
+Written in C# using .NET 8. It makes usee of the ONION CLEAN architecture. Themain branch has the updated codebase.
 
 SimpleAuhSystem/
 │

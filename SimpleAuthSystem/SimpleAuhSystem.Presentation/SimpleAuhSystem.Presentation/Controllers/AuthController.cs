@@ -8,11 +8,8 @@ namespace SimpleAuhSystem.Presentation.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    public class AuthController : BaseController
+    public class AuthController(IAuthService _auth) : BaseController
     {
-        private readonly IAuthService _auth;
-        public AuthController(IAuthService auth) => _auth = auth;
-
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest req)
         {

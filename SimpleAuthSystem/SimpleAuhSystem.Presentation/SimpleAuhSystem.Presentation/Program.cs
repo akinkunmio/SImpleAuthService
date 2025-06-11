@@ -24,22 +24,22 @@ builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen(options =>
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
-        options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-        {
-            Name = "Authorization",
-            In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-            Description = "Please enter your token with this format: ''Bearer YOUR_TOKEN''",
-            Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-            BearerFormat = "JWT",
-            Scheme = "bearer"
-        });
-        options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-        {
+        Name = "Authorization",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Please enter your token with this format: ''Bearer YOUR_TOKEN''",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
                 {
                     new Microsoft.OpenApi.Models.OpenApiSecurityScheme
                     {
@@ -53,8 +53,8 @@ builder.Services.AddEndpointsApiExplorer();
                     },
                     new List<string>()
                 }
-        });
     });
+});
 
 // JWT Setup
 var config = builder.Configuration;
